@@ -1,0 +1,143 @@
+package service.test;
+
+import java.util.ArrayList;
+import java.util.UUID;
+
+import javax.json.JsonObject;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.emp.main.Employee;
+
+public class WebTester {
+
+	private static Client client;
+	private static Logger Log=null;
+	private String Pass;
+	private String Fail;
+	private String Success;
+	
+	@BeforeClass
+	public static void setUp(){
+		client = ClientBuilder.newClient();		
+		PropertyConfigurator.configure("config/log4j.properties");
+		Log = Logger.getRootLogger();				
+	}
+		
+	@Before
+	public void setupTest(){					
+		Pass = Utility.getPropertyValue("config\\config.properties", "PASS");
+		Fail = Utility.getPropertyValue("config\\config.properties", "FAIL");
+	}
+	
+	/**
+	 * Test welcome page of employee service
+	 */
+	@Test
+	public void test1_WelcomePage(){		
+		String baseURL = Utility.getPropertyValue("config/config.properties", "REST_SERVICE_URL");
+		WebTarget wt = client.target(baseURL);
+		Response response = wt.request().get();
+		
+		String result = response.readEntity(String.class);		
+				
+		if(response.getStatus()!=200){
+			Log.debug(response.getStatus());
+			Assert.assertEquals(200, response.getStatus());
+			Log.info("Test case status - " + Fail);
+		}			
+		else{
+			Log.info("Testing -if 'This is Employee Service..!!! is in response object");
+			Assert.assertEquals(true,result.contains("This is Employee Service..!!!"));
+			Log.info("Test case status - " + Pass);
+		}						
+	}
+	
+	/**
+	 * Verify if service returns list of employees contains only one employee initially
+	 */
+	@Test
+	public void test2_GetAllEployees_Initial(){		
+		String baseURL = Utility.getPropertyValue("config/config.properties", "GET_ALL_EMPLOYEE");
+		WebTarget wt = client.target(baseURL);
+		Response response = wt.request().accept("application/xml").get();
+		
+		GenericType<ArrayList<Employee>> list = new GenericType<ArrayList<Employee>>() {};
+		ArrayList<Employee> emps  = response.readEntity(list);
+		
+		if(response.getStatus()!=200){
+			Log.debug(response.getStatus());
+			Assert.assertEquals(200, response.getStatus());
+		}			
+		else{
+			Log.info("Testing -if employee list is empty initially");
+			Assert.assertEquals(1,emps.size());
+			Log.info("Test case passed");
+		}						
+	}
+
+	/**
+	 * Verify if service uses http POST to create employee
+	 */
+	@Test
+	public void test3_CreateEmployee(){		
+		Employee createEmp = new Employee();
+		//createEmp.setEmpID(UUID.randomUUID().toString());
+		createEmp.setEmpID("2");
+		createEmp.setEmail("Second@gmail.com");
+		createEmp.setName("Second");
+		
+		String baseURL = Utility.getPropertyValue("config/config.properties", "CREATE_EMPLOYEE");
+		WebTarget wt = client.target(baseURL);
+		Response response = wt.request("application/xml").post(Entity.entity(createEmp, MediaType.APPLICATION_XML));
+		
+		Employee res = response.readEntity(Employee.class);
+		
+		if(response.getStatus()!=200){
+			Log.debug(response.getStatus());
+			Assert.assertEquals(200, response.getStatus());
+			Log.info("Test case status - " + Fail);
+		}			
+		else{
+			Log.info("Testing-Create employee with HTTP POST");			
+			Assert.assertTrue(createEmp.equals(res));
+			Log.info("Test case status - " + Pass);
+		}						
+	}
+
+	/**
+	 * Verify if service uses http get to retrieve employee info by empID
+	 */
+	@Test
+	public void test4_GetEmployeeByID(){
+		String empID = Utility.getPropertyValue("config/config.properties", "EMP_ID");
+		String baseURL = Utility.getPropertyValue("config/config.properties", "GET_EMPLOYEE_ID");
+		WebTarget wt = client.target(baseURL);
+		Response response = wt.path(empID).request().accept("application/xml").get();	
+		
+		if(response.getStatus()!=200){
+			Log.debug(response.getStatus());
+			Assert.assertEquals(200, response.getStatus());
+		}			
+		else{
+			Employee emp = response.readEntity(Employee.class);
+			
+			Log.info("Testing -Get employee with HTTP GET");			
+			Assert.assertEquals(empID,emp.getEmpID());
+			Log.info("Test case passed");
+		}			
+	}
+	
+}

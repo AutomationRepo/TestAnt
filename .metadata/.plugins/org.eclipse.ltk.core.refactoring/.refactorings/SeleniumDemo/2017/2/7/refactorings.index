@@ -1,0 +1,45 @@
+1487202108167	Delete element
+1487202421443	Delete element
+1487202842874	Delete element
+1487203153496	Delete element
+1487203194243	Rename resource 'InputData'
+1487203203970	Rename resource 'TestSuit'
+1487203219646	Rename source folder 'src'
+1487203274939	Delete element
+1487203304952	Rename resource 'HotelApp.ExternalLib'
+1487203311802	Rename resource 'HotelApp.InputData'
+1487203322868	Rename resource 'HotelApp.TestSuit'
+1487203331340	Rename source folder 'HotelApp.src'
+1487314592017	Delete element
+1487314595365	Delete element
+1487314599804	Delete element
+1487314603197	Delete element
+1487314617772	Delete element
+1487314639140	Rename source folder 'src'
+1487314748950	Delete element
+1487314982568	Delete element
+1487315341640	Delete element
+1487315344494	Delete element
+1487315347263	Delete element
+1487373895359	Delete element
+1487374115629	Rename type 'ReadExcelData'
+1487385279048	Rename compilation unit 'Browser.java'
+1487385878580	Delete element
+1487385928750	Rename package 'hotel.app.custom'
+1487386356816	Rename type 'Utility'
+1487388377752	Copy file
+1487388385347	Delete element
+1487389417693	Move file
+1487402628193	Move file
+1487402642975	Move file
+1487453722798	Rename package 'hotel.app.utilty'
+1487453731834	Rename package 'hotel.app.pages'
+1487453760814	Rename package 'hotel.app.reporting'
+1487453772217	Rename package 'hotel.app.custom'
+1487453802928	Delete element
+1487453821434	Move files
+1487453841532	Rename package 'hotel.app.regression'
+1487453886330	Move file
+1487453893824	Delete element
+1487453904958	Rename package 'hotel.app.logging'
+1487453912935	Rename package 'hotel.custom'

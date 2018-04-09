@@ -1,0 +1,19 @@
+1490727181332	Rename resource 'empList.properties'
+1490727221860	Rename package 'com.emp.test'
+1490727283459	Delete element
+1490727318245	Delete element
+1490727704516	Rename type 'readDB'
+1490727878931	Delete element
+1490728685777	Rename source folder 'DB'
+1490728740444	Delete element
+1490728801799	Move file
+1490728806133	Delete element
+1490728877911	Copy file
+1490728884761	Delete element
+1490729379224	Copy file
+1490729386420	Delete element
+1490729822738	Move 'empDBO.properties' to 'lib'
+1490729924292	Copy file
+1490729927832	Delete element
+1490729956682	Move 'empDBO.properties' to 'db'
+1490730170172	Move 'db' to 'classes'

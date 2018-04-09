@@ -1,0 +1,61 @@
+'''
+Created on Apr 12, 2017
+@author: Shweta
+'''
+
+from builtins import reversed
+
+'''
+Reverse string using slice range with -1
+'''
+def reverseString(inputStr):
+    if inputStr is None or len(inputStr) is 0:
+        return None
+    return inputStr[::-1]
+    
+'''
+Reverse string using two pointers
+'''
+def reverseString_TwoPointer(inputStr):
+    if inputStr is None or len(inputStr) is 0:
+        return None
+    inputList = list(inputStr)
+    listSize = len(inputList)
+    for i in range(0,int(listSize/2)):
+        inputList[i],inputList[listSize-1-i] = inputList[listSize-1-i], inputList[i]        
+    return ''.join(inputList)
+
+'''
+Reverse String using built in function reversed
+'''
+def reverseString_ByReversed(inputStr):
+    if inputStr is None or len(inputStr) is 0:
+        return None
+    return ''.join(reversed(inputStr))
+
+'''
+Reverse part of the string using slice range
+'''
+def reversePartOfString(inputStr,start,end):
+    if inputStr is None or len(inputStr) is 0:
+        return None
+    return inputStr[start:end][::-1]
+
+'''
+Reverse words order in string
+'''
+def reverseWordsOrderFromString(inputStr):
+    if inputStr is None or len(inputStr) is 0:
+        return None
+    return  ' '.join(inputStr.split()[::-1]) 
+    '''return inputStr[::-1]
+    return ' '.join(reversed(inputStr.split())) '''
+
+'''
+Reverse words in string keeping same order
+'''
+def reverseWordsInString(InputStr):
+    if InputStr is None or len(InputStr) is 0:
+        return None
+    return ' '.join((lambda x: [ch[::-1] for ch in InputStr.split())]))
+    ''' return ' '.join(ch[::-1] for ch in InputStr.split())'''

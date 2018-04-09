@@ -1,0 +1,9 @@
+'''
+Created on Apr 12, 2017
+
+@author: Shweta
+'''
+from Coding.Strings import revesreString, reverseString_TwoPointer
+
+print(revesreString("Shweta"))
+print(reverseString_TwoPointer("Shwet"))

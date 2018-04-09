@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="MyTestRunner" name="SeleniumFramework">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../IDE_Platform/eclipse/eclipse-SDK-4.2.1-win32/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+	<property name="dist" location="${basedir}/target/jar"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+	<property name="build.jars" value="E:\Avijit\eclipse-SDK-workspace\SeleniumFramework\External"/>
+    <path id="SeleniumFramework.classpath">    	
+        <pathelement location="bin"/>
+    	<fileset dir="${build.jars}" includes="*.jar" />
+    	<!--
+        <pathelement location="External/apache-mime4j-0.6.jar"/>
+        <pathelement location="External/bsh-1.3.0.jar"/>
+        <pathelement location="External/cglib-nodep-2.1_3.jar"/>
+        <pathelement location="External/commons-codec-1.6.jar"/>
+        <pathelement location="External/commons-collections-3.2.1.jar"/>
+        <pathelement location="External/commons-exec-1.1.jar"/>
+        <pathelement location="External/commons-io-2.0.1.jar"/>
+        <pathelement location="External/commons-jxpath-1.3.jar"/>
+        <pathelement location="External/commons-lang-2.6.jar"/>
+        <pathelement location="External/commons-logging-1.1.1.jar"/>
+        <pathelement location="External/cssparser-0.9.5.jar"/>
+        <pathelement location="External/guava-12.0.jar"/>
+        <pathelement location="External/hamcrest-core-1.1.jar"/>
+        <pathelement location="External/hamcrest-library-1.1.jar"/>
+        <pathelement location="External/htmlunit-2.9.jar"/>
+        <pathelement location="External/htmlunit-core-js-2.9.jar"/>
+        <pathelement location="External/httpclient-4.1.3.jar"/>
+        <pathelement location="External/httpcore-4.1.3.jar"/>
+        <pathelement location="External/httpmime-4.1.3.jar"/>
+        <pathelement location="External/ini4j-0.5.2.jar"/>
+        <pathelement location="External/jcommander-1.13.jar"/>
+        <pathelement location="External/jna-3.4.0.jar"/>
+        <pathelement location="External/jna-platform-3.4.0.jar"/>
+        <pathelement location="External/json-20080701.jar"/>
+        <pathelement location="External/junit-4.10.jar"/>
+        <pathelement location="External/junit-dep-4.10.jar"/>
+        <pathelement location="External/nekohtml-1.9.15.jar"/>
+        <pathelement location="External/netty-3.2.7.Final.jar"/>
+        <pathelement location="External/operadriver-0.14.jar"/>
+        <pathelement location="External/protobuf-java-2.4.1.jar"/>
+        <pathelement location="External/sac-1.3.jar"/>
+        <pathelement location="External/selenium-java-2.25.0.jar"/>
+        <pathelement location="External/selenium-java-2.25.0-srcs.jar"/>
+        <pathelement location="External/serializer-2.7.1.jar"/>
+        <pathelement location="External/testng-6.0.1-nobsh-noguice.jar"/>
+        <pathelement location="External/webbit-0.4.8-SNAPSHOT.jar"/>
+        <pathelement location="External/xalan-2.7.1.jar"/>
+        <pathelement location="External/xercesImpl-2.9.1.jar"/>
+        <pathelement location="External/xml-apis-1.3.04.jar"/>
+        -->
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="SeleniumFramework.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+	<target name="package" depends="build" description="Package as a jar">
+	    <tstamp>
+	 	  <format property="NOW2" pattern="ddMMMMyyyy_HHmmss" />
+	    </tstamp>  	
+	    <mkdir dir="${dist}"/>
+	    <jar jarfile="${dist}/SeleniumTest.jar" basedir="bin">
+	      <manifest>
+	        <attribute name="Main-Class" value=""/>
+	        <attribute name="Built-By" value="OpenQA.org"/>
+	        <attribute name="Build-Time" value="${NOW2}"/>
+	        <section name="common">
+	          <attribute name="Specification-Title" value="Avijit"/>
+	          <attribute name="Specification-Version" value="1.0"/>
+	          <attribute name="Specification-Vendor" value="OpenQA.org"/>
+	        </section>
+	      </manifest>
+	    </jar>
+	  </target>
+
+	<target name="BingHomeTests" depends="build">
+        <mkdir dir="${junit.output.dir}"/>
+          <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="SeleniumTestSuite.BingHomeTests" todir="${junit.output.dir}"/>
+            <classpath refid="SeleniumFramework.classpath"/>
+        </junit>
+    </target>
+	<target name="SearchResultTests" depends="build">
+	        <mkdir dir="${junit.output.dir}"/>
+	        <junit fork="yes" printsummary="withOutAndErr">
+	            <formatter type="xml"/>
+	            <test name="SeleniumTestSuite.SearchResultTests" todir="${junit.output.dir}"/>
+	            <classpath refid="SeleniumFramework.classpath"/>
+	        </junit>
+	    </target>
+    <target name="BingTests">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="SeleniumTestSuite.BingTests" todir="${junit.output.dir}"/>
+            <classpath refid="SeleniumFramework.classpath"/>
+        </junit>
+    </target>
+    <target name="MainClass">
+        <java classname="MainClass" failonerror="true" fork="yes">
+            <classpath refid="SeleniumFramework.classpath"/>
+        </java>
+    </target>
+    <target name="MyTestRunner" depends="build">
+        <java classname="SeleniumTestSuite.MyTestRunner" failonerror="true" fork="yes">
+            <classpath refid="SeleniumFramework.classpath"/>
+        </java>
+    </target>
+    <target name="SeleniumTestSuite">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="SeleniumTestSuite.BingHomeTests" todir="${junit.output.dir}"/>
+            <test name="SeleniumTestSuite.BingTests" todir="${junit.output.dir}"/>
+            <classpath refid="SeleniumFramework.classpath"/>
+        </junit>
+    </target>
+    <target name="TestCase_01">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="TestCase_01" todir="${junit.output.dir}"/>
+            <classpath refid="SeleniumFramework.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>

@@ -1,0 +1,17 @@
+package ProblemStatements;
+
+import java.lang.reflect.Array;
+
+public class MyStack<T> {
+	private T[] data;
+	
+	//public MyStack(){
+		//data=null;		
+	//}
+
+	public MyStack(class<T> cls, int size){
+		t[] data = ([T])Array.newInstance(cls, size);
+		this.data=data;
+	}
+	
+}

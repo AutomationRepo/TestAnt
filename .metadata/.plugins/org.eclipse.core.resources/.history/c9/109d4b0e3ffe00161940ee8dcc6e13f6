@@ -1,0 +1,66 @@
+package ProblemStatements;
+
+import java.lang.reflect.Array;
+
+public class MyStack<T> {
+	private T[] data = null;
+	private int top = -1;
+	
+	public MyStack(){
+		data = (T[]) new Object[10];		
+	}
+
+	public MyStack(int size){
+		data = (T[]) new Object[size];
+	}
+	
+	public boolean isFull(){
+		if(top == data.length-1)
+			return true;
+		return false;
+	}
+	
+	public boolean isEmpty(){
+		if(top==-1)
+			return true;
+		return false;
+	}
+	
+	public void push(T val){
+		if(!isFull()){
+			top=top+1;
+			data[top]=val;
+		}
+			
+		System.out.println("Stack is full");
+	}
+	
+	public void pop(T val){
+		if(!isEmpty()){
+			top=-1;			
+		}			
+		System.out.println("Stack is empty");
+	}
+	
+	public int count(){
+		if(isEmpty())
+			return 0;
+		if(isFull())
+			return data.length;
+		return top+1;
+	}
+	
+	public void displayStack(){
+		if(isEmpty())
+			return;
+		for(int i=0;i<=top;i++){
+			System.out.println(data[i]);
+		}
+	}
+
+	public T getPeek() {
+		return data[top];
+	}
+
+	
+}

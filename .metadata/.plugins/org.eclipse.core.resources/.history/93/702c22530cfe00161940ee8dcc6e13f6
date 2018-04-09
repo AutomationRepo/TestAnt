@@ -1,0 +1,95 @@
+package ProblemStatements;
+
+public class Test {
+
+	public static void main(String[] args) {
+	
+	LinkedList<Integer> mlLinkedList = new LinkedList<Integer>();
+	mlLinkedList.addNode(3);
+	mlLinkedList.addNode(1);
+	mlLinkedList.addNode(5);
+	/*
+	mlLinkedList.addNode(12);
+	mlLinkedList.addNode(13);
+	mlLinkedList.addNode(62);
+	mlLinkedList.addNode(27);
+	mlLinkedList.addNode(12);
+	mlLinkedList.addNode(45);
+	mlLinkedList.addNode(new ListNode<Integer>(54));
+	//mlLinkedList.addNodeAt(76, 2);
+	//mlLinkedList.getNode(10).next = mlLinkedList.getNode(4);
+	//mlLinkedList.displayList();
+	System.out.println();
+	//System.out.println(mlLinkedList.count());
+	//ListNode<Integer> res1 = mlLinkedList.getNode(2);
+	//mlLinkedList.deleteNodeAt(2);
+	//mlLinkedList.displayList();
+	//System.out.println();
+	//ListNode<Integer> res = mlLinkedList.getNode(2);	
+	//ListNode<Integer> rgd = mlLinkedList.reverseList_recur(mlLinkedList.getHead());
+	//ListNode<Integer> res11 =mlLinkedList.reversePartOfList(mlLinkedList.getHead(),3);
+	//LinkedList<Integer> res= mlLinkedList.addTwoLists(mlLinkedList,mlLinkedList1);	
+	//mlLinkedList.displayList();
+	ListNode<Integer> res = mlLinkedList.startOfLoop();
+	System.out.println();
+//	System.out.println(mlLinkedList.count());
+	
+	
+	/*Sorting	 
+	Integer[] arr = {7, 5, 2, 4, 3,9};
+	Sorting.quickSort(arr);
+	for(int ii=0;ii<arr.length;ii++)
+		System.out.print(arr[ii]+ ", ");
+	
+	char[][] data ={{'S','S','S'},{'A','A','A'},{'V','V','V'}};
+	for(int i=0;i<data[0].length;i++){
+		for(int j=0;j<data[1].length;j++){
+			System.out.print(data[i][j]+", ");			
+		}
+		System.out.println();
+	}	
+	
+	char[][] res1 = ArraysStrings.rotateMatrix(data);	
+	System.out.println();
+	for(int i=0;i<res1[0].length;i++){
+		for(int j=0;j<res1[1].length;j++){
+			System.out.print(res1[i][j]+", ");			
+		}
+		System.out.println();
+	}	
+	
+	res1 = ArraysStrings.rotateMatrix(res1);	
+	System.out.println();
+	for(int i=0;i<res1[0].length;i++){
+		for(int j=0;j<res1[1].length;j++){
+			System.out.print(res1[i][j]+", ");			
+		}
+		System.out.println();
+	}	
+	
+	//replace space in string
+	System.out.println(ArraysStrings.replaceSpace(" Avi jit "));	
+	System.out.println(ArraysStrings.replaceSpace_array(" Avi jit "));
+	
+	//Anagram strings
+	System.out.println(ArraysStrings.isStringAnagram_sort("Shweta","Shweta"));
+		
+	//Remove duplicates
+	System.out.println(ArraysStrings.removeDuplicate_array("Avijit"));
+	System.out.println(ArraysStrings.removeDuplicate_LHS("Avijit"));
+	
+	
+	//Reverse String
+	System.out.println(ArraysStrings.reverseString("abcd"));
+	System.out.println(ArraysStrings.reverseString_SB("abcd"));
+	
+	//Unique chars string
+	System.out.println(ArraysStrings.areUniqueChars_256("AVIJTGBa"));
+	System.out.println(ArraysStrings.areUniqueChars_bit("AbaB"));
+	System.out.println(ArraysStrings.areUniqueChars_sorting("AbaB"));
+	*/
+	
+	
+	}
+
+}

@@ -1,0 +1,36 @@
+package ProblemStatements;
+
+public class BinarySearchTree<T> {
+	private TreeNode<T> root;
+	
+	public BinarySearchTree(){
+		root=null;
+	}
+	
+	public BinarySearchTree(T val){
+		root=new TreeNode<>(val);
+	}
+	
+	public BinarySearchTree(TreeNode<T> node){
+		root=new TreeNode<>(node);
+	}
+	
+	public boolean isEmpty(){
+		return(root==null);
+	}
+	
+	public void insert(T val){
+		if(root==null){
+			root=new TreeNode<>(val);
+			return;
+		}
+				
+		_inser(root,val);	
+	}
+	
+	private void _insert(TreeNode<T> node,T value){
+		if()
+			return;
+		
+	}
+}

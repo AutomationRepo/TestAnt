@@ -1,0 +1,17 @@
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:11:17:07 -0700] "GET /WebService/rest/employee HTTP/1.1" 500 6796
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:11:17:07 -0700] "GET /favicon.ico HTTP/1.1" 404 1084
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:43:04 -0700] "GET /WebService HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:43:05 -0700] "GET /WebService/ HTTP/1.1" 200 305
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:43:25 -0700] "GET /WebService/rest/employee HTTP/1.1" 500 6550
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:44:03 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 362
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:45:00 -0700] "PUT /WebService/rest/employee/update/2/Second HTTP/1.1" 200 152
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:45:12 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 365
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:45:28 -0700] "PUT /WebService/rest/employee/update/4/Second HTTP/1.1" 404 1081
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:46:11 -0700] "POST /WebService/rest/employee/create HTTP/1.1" 200 153
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:46:16 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 463
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:46:46 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 463
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:47:42 -0700] "GET /WebService/rest/employee/get/1 HTTP/1.1" 200 150
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:49:14 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 463
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:50:29 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 463
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:50:53 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 463
+0:0:0:0:0:0:0:1 - - [30/Mar/2017:22:51:29 -0700] "GET /WebService/rest/employee HTTP/1.1" 200 463

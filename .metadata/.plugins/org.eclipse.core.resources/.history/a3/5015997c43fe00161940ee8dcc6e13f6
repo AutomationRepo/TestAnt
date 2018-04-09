@@ -1,0 +1,14 @@
+package ProblemStatements;
+
+public class MyQueue<T> {
+	
+	private T[] data = null;
+	private int front = -1;
+	private int rear = -1;
+	private int size = 10;
+	
+	public MyQueue(){
+		data = (T[]) new Object[size];
+	}
+	
+}

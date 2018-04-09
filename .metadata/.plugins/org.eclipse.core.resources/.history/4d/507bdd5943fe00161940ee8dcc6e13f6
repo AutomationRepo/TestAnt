@@ -1,0 +1,11 @@
+package ProblemStatements;
+
+public class MyQueue<T> {
+	
+	private T[] data = null;
+	private int front;
+	private int rear;
+	private int size = 10;
+	
+	
+}

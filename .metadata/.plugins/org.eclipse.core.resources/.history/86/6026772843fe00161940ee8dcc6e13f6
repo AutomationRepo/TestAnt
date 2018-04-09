@@ -1,0 +1,8 @@
+package ProblemStatements;
+
+public class MyQueue {
+	private int front;
+	private int rear;
+	private int size;
+	private data;
+}

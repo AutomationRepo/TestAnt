@@ -1,0 +1,22 @@
+package ProblemStatements;
+
+import java.lang.reflect.Array;
+
+public class MyStack<T> {
+	private T[] data;
+	
+	public MyStack(){
+		data=null;		
+	}
+
+	public MyStack(int size){
+		data = (T[]) new Object[size];
+	}
+	
+	public void push(T val){
+		if(data==null){
+			
+		}
+	}
+	
+}

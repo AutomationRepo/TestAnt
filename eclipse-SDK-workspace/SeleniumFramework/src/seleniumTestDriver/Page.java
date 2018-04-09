@@ -1,0 +1,62 @@
+package seleniumTestDriver;
+
+import org.openqa.selenium.WebElement;
+
+import seleniumTestAgent.INavigate;
+import seleniumTestAgent.IPage;
+
+
+public class Page implements INavigate, IPage {
+	
+	//INavigate elements
+	public boolean NavigateCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean NavigateCust(String url){
+		throw new UnsupportedOperationException();
+	}
+	
+	//IPage elements
+	public String PageTitleCust(){
+		throw new UnsupportedOperationException();
+	}
+	public String PageUrlCust(){
+		throw new UnsupportedOperationException();
+	}
+	public String PageSourceCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean WaitForTextOnPageCust(String text){
+		throw new UnsupportedOperationException();
+	}
+	public boolean WaitForPageLoadCompleteCust(int timeout){
+		throw new UnsupportedOperationException();
+	}
+	public boolean WaitForElementOnPageCust(WebElement element){
+		throw new UnsupportedOperationException();
+	}
+	
+	//IBrowser elements
+	public boolean CloseBrowserCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean RefreshBrowserCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean BrowserBackCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean NewBrowserCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean NewBrowserTabCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean MaximizeBrowserCust(){
+		throw new UnsupportedOperationException();
+	}
+	public boolean MinimizeBrowserCust(){
+		throw new UnsupportedOperationException();
+	}
+
+}

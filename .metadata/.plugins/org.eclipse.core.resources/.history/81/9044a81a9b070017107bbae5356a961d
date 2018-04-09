@@ -1,0 +1,143 @@
+package ProblemStatements;
+
+public class BinarySearchTree<T extends Comparable<T>> {
+	private TreeNode<T> root;
+	
+	public BinarySearchTree(){
+		root=null;
+	}
+	
+	public BinarySearchTree(T val){
+		root=new TreeNode<>(val);
+	}
+	
+	public BinarySearchTree(TreeNode<T> node){
+		root=new TreeNode<>(node);
+	}
+	
+	public boolean isEmpty(){
+		return(root==null);
+	}
+	
+	public void insert(T val){		
+		root = _insert(root,val);	
+	}
+	
+	private TreeNode<T> _insert(TreeNode<T> node, T value){
+		if(node==null){
+			node = new TreeNode<>(value);
+			return node;
+		}		
+		
+		if(value.compareTo(node.data) < 0 )
+			 node.left = _insert(node.left,value);
+		else
+			 node.right = _insert(node.right,value);
+		
+		return node;		
+	}
+	
+	public TreeNode<T> search(T val){
+		return _search(root,val);
+	}	
+	
+	private TreeNode<T> _search(TreeNode<T> node, T value){
+		if(node==null || node.data.equals(value))
+			return node;
+		
+		if(value.compareTo(node.data) < 0)
+			return _search(node.left,value);
+		return _search(node.right,value);		
+	}
+	
+	public void preorder(TreeNode<T> node){
+		if(node==null)
+			return;
+		System.out.print(node.data+" ");
+		preorder(node.left);
+		preorder(node.right);		
+	}
+
+	public void inorder(TreeNode<T> node){
+		if(node==null)
+			return;		
+		
+		preorder(node.left);
+		System.out.print(node.data+" ");
+		preorder(node.right);
+		
+	}
+	
+	public void postorder(TreeNode<T> node){
+		if(node==null)
+			return;
+		
+		preorder(node.left);
+		preorder(node.right);
+		System.out.print(node.data+" ");		
+	}
+	
+	public int count(TreeNode<T> node){
+		if(node==null)
+			return 0;
+		return count(node.left) + count(node.right) + 1;		
+	}
+	
+	public int hight(TreeNode<T> node){
+		if(node==null)
+			return 0;
+		if(node.left==null)
+			return hight(node.right)+1;
+		return hight(node.left)+1;
+	}
+	
+	public void BFS(){
+		MyQueue<TreeNode<T>> myQ= new MyQueue<>(count(root));		
+		
+		_BFS(root,myQ);
+		
+	}
+	
+	private void _BFS(TreeNode<T> node, MyQueue<TreeNode<T>> mq){
+		if(node==null)
+			return;
+		
+		System.out.print(node.data + " ");
+		
+		if(node.left!=null)
+			mq.enque(node.left);
+		if(node.right!=null)
+			mq.enque(node.right);
+		
+		if(!mq.isEmpty())
+			_BFS(mq.dequeue(), mq);
+		
+	}
+
+	public void levelOrderPrint(int level){
+		//for(int i=1; i<=hight(root);i++){
+			//_levelOrder(root,i);
+		//}
+		if(level>hight(root)){
+			System.out.println("level doesnt exists");
+			return;
+		}
+		_levelOrder(root, level);
+	}
+	
+	private void _levelOrder(TreeNode<T> node, int level){
+		if(node==null)
+			return;
+		
+		if(level==1)
+			System.out.print(node.data+" ");
+		else
+			_levelOrder(node.left, level-1);
+			_levelOrder(node.right, level-1);		
+	}
+	
+	public TreeNode<T> getRoot() {
+		return root;
+	}
+		
+}

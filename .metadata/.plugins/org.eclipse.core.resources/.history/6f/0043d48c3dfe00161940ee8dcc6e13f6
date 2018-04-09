@@ -1,0 +1,37 @@
+package ProblemStatements;
+
+import java.lang.reflect.Array;
+
+public class MyStack<T> {
+	private T[] data = null;
+	private int top = -1;
+	
+	public MyStack(){
+		data = (T[]) new Object[10];		
+	}
+
+	public MyStack(int size){
+		data = (T[]) new Object[size];
+	}
+	
+	public boolean isFull(){
+		if(top==data.length-1)
+			return true;
+		return false;
+	}
+	
+	public boolean isEmpty(){
+		if(top==-1)
+			return true;
+		return false;
+	}
+	
+	public void push(T val){
+		if(top<0){
+			S
+		}
+			
+		data[top]=val;
+	}
+	
+}

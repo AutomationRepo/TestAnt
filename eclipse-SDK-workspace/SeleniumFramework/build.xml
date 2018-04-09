@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Jan 28, 2013 4:25:10 PM                                                        
+
+     project    
+     description
+                   
+     Avijit_Chatterjee                                                                
+     ====================================================================== -->
+<project name="selenium framework ANT script" basedir= "." default="run1">
+    <description>
+    	Selenium web driver Common Build Tasks
+    </description>
+	
+	<property environment="env"/>
+	<property name="ECLIPSE_HOME" value="../../eclipse-SDK-4.2.1-win32/eclipse"/>
+    <property name="junit.output.dir" value="junit-output"/>
+	<property name="reports" value="run-reports"/>
+	<property name="debuglevel" value="source,lines,vars"/>
+	<property name="dist" location="${basedir}/target/jar"/>
+	<property name="target" value="1.7"/>
+	<property name="source" value="1.7"/>
+	<property name="build.jars" value="${basedir}/External"/>
+	<property name="reports" location="${basedir}/Test_Reports"/>
+	<property name="screenshots" location="${basedir}/screenShots"/>
+	<taskdef name="one-jar" classname="com.simontuffs.onejar.ant.OneJarTask" onerror="report"
+		classpath = "${build.jars}/one-jar-ant-task-0.97.jar"/>
+	
+	<path id="SeleniumFramework.classpath">    	
+	        <pathelement location="bin"/>
+	    	<fileset dir="${build.jars}" includes="*.jar" />
+	</path>
+	<target name="clean" description="Remove generated artifacts">
+	    <delete dir="screenShots"/>
+	  	<!--<delete dir="Test_Reports"/>-->
+	  	<delete dir="test-output"/>
+		<delete dir="bin"/>
+		<delete dir="target"/>
+		<delete dir="run-reports"/>
+		<delete dir="junit-output"/>
+		<delete dir="finalJar"/>
+		<delete dir="Logs"/>
+	</target>
+	<target name="init" depends="clean">
+	        <mkdir dir="bin"/>		    
+	        <copy includeemptydirs="false" todir="bin">
+	            <fileset dir="src">
+	                <exclude name="**/*.java"/>
+	            </fileset>
+	        </copy>
+	    </target>
+	<target name="build" depends="init">
+	        <echo message="${ant.project.name}: ${ant.file}"/>
+	        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+	            <src path="src"/>
+	            <classpath refid="SeleniumFramework.classpath"/>
+	        </javac>
+	    </target>
+	<target name="package" depends="build" description="Package as a jar">
+	    <tstamp>
+	 	  <format property="NOW2" pattern="ddMMMMyyyy_HHmmss" />
+	    </tstamp>  	
+	    <mkdir dir="${dist}"/>
+	    <jar jarfile="${dist}/SeleniumTest.jar" basedir="bin">
+	      <manifest>
+	        <attribute name="Main-Class" value="SeleniumTestSuite.MyTestRunner"/>
+	        <attribute name="Built-By" value="OpenQA.org"/>
+	        <attribute name="Build-Time" value="${NOW2}"/>
+	        <section name="common">
+	          <attribute name="Specification-Title" value="Avijit"/>
+	          <attribute name="Specification-Version" value="1.0"/>
+	          <attribute name="Specification-Vendor" value="OpenQA.org"/>
+	        </section>
+	      </manifest>
+	    </jar>
+	</target>
+	<target name="onejar" depends="package">
+		<mkdir dir="finalJar"/>
+		<!-- Construct the One-JAR file -->
+		<one-jar destfile="finalJar/FinalOne.jar">
+			<main jar="${dist}/SeleniumTest.jar">
+			</main>
+			<lib>
+				<fileset dir="${build.jars}" />
+			</lib>
+		</one-jar>
+	</target>
+	<path id="demo.classpath">
+		<fileset dir="${dist}">
+		  <!--Application JAR Name-->
+		  <include name="SeleniumTest.jar"/>
+			
+		</fileset>
+		<fileset dir="${build.jars}">
+		   <include name="*.jar"/>
+		</fileset>
+		   <pathelement path="${java.class.path}/"/>
+	 </path>	
+	<target name="run" depends="package" description="Run Selenium Test Suites ">
+		<tstamp>
+		 	<format property="NOW" pattern="ddMMMMyyyy_hhmmss" />
+		</tstamp>  	
+		<echo message="Test started: ${NOW}" />
+		<mkdir dir="${reports}/${NOW}"/>
+		<java failonerror="true" classname="org.junit.runner.JUnitCore" classpathref="demo.classpath">
+			 
+			<arg value="-runClasses"/>
+			<arg value="SearchResultTests" />
+			<!--
+			<arg value="-d" />
+			<arg value="${reports}/${NOW}" />	 	
+			<arg value="-testcasename" />
+			<arg value="SearchResultTests" />	 -->				
+		</java>
+		<tstamp>
+		 	<format property="NOW1" pattern="ddMMMMyyyy_hhmmss" />
+		</tstamp>
+		<echo message="Test ended: ${NOW1}" />
+	</target>
+	<target name="run1" depends="package" description="Run Selenium Test Suites ">
+		<mkdir dir="${junit.output.dir}"/>
+		<mkdir dir="${screenshots}"/>
+		<junit fork="yes" printsummary="withOutAndErr">
+			<formatter type="xml"/>
+			<batchtest fork="yes" todir="${junit.output.dir}">
+				<resources>
+					<zipfileset src="${dist}/SeleniumTest.jar" includes="**/*Tests.class"/>
+					<!--<zipfileset src="${dist}/SeleniumTest.jar" includes="**/BingHomeTests.class" />	-->														
+				</resources>
+			</batchtest>
+			<classpath refid="SeleniumFramework.classpath"/>
+		</junit>
+		<antcall target="junitreport" />
+	</target>
+	
+	<target name="BingHomeTests" depends="build">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr" >
+            <formatter type="xml"/>
+            <test name="SeleniumTestSuite.BingHomeTests" todir="${junit.output.dir}"/>
+		
+            <classpath refid="SeleniumFramework.classpath"/>
+        </junit>
+		<antcall target="junitreport" />
+	</target>
+	<target name="MyTestRunner" depends="build">
+		<mkdir dir="${junit.output.dir}"/>
+		<java classname="SeleniumTestSuite.MyTestRunner" failonerror="true" fork="yes">
+            <classpath refid="SeleniumFramework.classpath"/>
+		</java>
+	</target>
+	<target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${reports}"/>
+        </junitreport>
+	</target>
+		    
+</project>

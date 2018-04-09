@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;applog.html&apos; to &apos;testLogs&apos;&#x0D;&#x0A;- Original project: &apos;eclipse-SDK-workspace&apos;&#x0D;&#x0A;- Destination element: &apos;testLogs&apos;&#x0D;&#x0A;- Original element: &apos;applog.html&apos;" description="Copy file" element1="Grazitti_Automation_Selenium2_Testing_Framework_v3.0/Grazitti_Framework_Version3.0/TestLogs/applog.html" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1487501836177" target="/SeleniumDemo/testLogs" units="0" version="1.0"/>
+</session>

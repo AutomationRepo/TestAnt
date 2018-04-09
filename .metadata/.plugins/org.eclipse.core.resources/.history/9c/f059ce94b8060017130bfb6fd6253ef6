@@ -1,0 +1,13 @@
+package ProblemStatements;
+
+public class BinarySearchTree<T> {
+	private TreeNode<T> root;
+	
+	public BinarySearchTree(){
+		root=null;
+	}
+	
+	public BinarySearchTree(TreeNode<T> node){
+		root=new TreeNode<>(node);
+	}
+}

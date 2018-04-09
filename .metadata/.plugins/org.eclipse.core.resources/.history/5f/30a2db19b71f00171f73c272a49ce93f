@@ -1,0 +1,15 @@
+'''
+Created on Apr 12, 2017
+
+@author: Shweta
+'''
+
+
+'''
+Reverser string using slice range with -1
+'''
+def revesreString(inputStr):
+    if inputStr is None or len(inputStr) is 0:
+        return None
+    return inputStr[::-1]
+    

@@ -1,0 +1,46 @@
+package hotel.regression;
+
+import static org.junit.Assert.*;
+
+import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import hotel.pages.HomePage;
+import hotel.pages.SearchHotelPage;
+import hotel.utilty.ReadExcel;
+
+public class HomePageTests {
+	
+	HomePage objHome;
+	ReadExcel objRS;
+	SearchHotelPage objSearch;
+	static Logger log = Logger.getLogger(HomePageTests.class.getName())
+	
+	@Before
+	public void setUP()
+	{
+		objHome = new HomePage();
+		objSearch = new SearchHotelPage();
+		objRS = new ReadExcel();
+	}
+	
+	@Test
+	public void loginTest()
+	{
+		String user = objRS.getCellData("TestCases", "TC_1", "UserName");
+		String pwd = objRS.getCellData("TestCases", "TC_1", "Password");
+		String result = objRS.getCellData("ExpectedResult", "TC_1", "ProfileName");
+		objHome.userLogin(user, pwd);		
+		String res = objSearch.getProfileName();
+		assertEquals(result, res);
+	}
+	
+	@After
+	public void closeBrowser()
+	{
+		objHome.close();
+	}
+
+}

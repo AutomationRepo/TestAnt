@@ -1,0 +1,25 @@
+'''
+Created on Apr 12, 2017
+
+@author: Shweta
+'''
+from Coding.Strings import reverseString, reverseString_TwoPointer,  reverseString_ByReversed, reverseString, reversePartOfString,reverseWordsOrderFromString,reverseWordsInString,\
+    verifyAnagramStrings,verifyAnagramStrings_sorting
+    
+matrix = [[1 if i==j else 0 for j in range(4)] for i in range(4)]
+matrix1 = lambda x,y : [[matrix[x,y] for y in range(matrix[1])] for x in range(matrix)]
+
+'''
+ c = collections.Counter(a=2,b=3,c=1)
+print(c.get('b'))
+   
+print(verifyAnagramStrings("Shweta","atewSh"))
+print(verifyAnagramStrings_sorting("Sheeta","Shteta"))   
+
+print(reverseString("Shweta"))
+print(reverseString_TwoPointer("Shweta"))
+print(reverseString_ByReversed("Shweta"))
+print(reversePartOfString("Shweta",1,3))
+print(reverseWordsOrderFromString( "I am Shweta"))
+print(reverseWordsInString( "I am Shweta"))
+'''

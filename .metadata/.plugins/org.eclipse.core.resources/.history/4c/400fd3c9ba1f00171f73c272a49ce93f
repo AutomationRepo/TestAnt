@@ -1,0 +1,12 @@
+'''
+Created on Apr 12, 2017
+
+@author: Shweta
+'''
+from Coding.Strings import reverseString, reverseString_TwoPointer,  reverseString_ByReversed, reverseString,\
+    reversePartOfString
+
+print(reverseString("Shweta"))
+print(reverseString_TwoPointer("Shweta"))
+print(reverseString_ByReversed("Shweta"))
+print(reversePartOfString("Shweta",1,5))

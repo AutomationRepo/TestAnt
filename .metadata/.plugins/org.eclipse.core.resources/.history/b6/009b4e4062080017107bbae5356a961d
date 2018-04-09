@@ -1,0 +1,27 @@
+package ProblemStatements;
+
+public class TreeProblems {
+
+public BinarySearchTree<T> createBST(T[] input){			
+		
+		int arrSize = input.length;
+		
+		if(input==null || input.length<1)
+			return null;			
+		
+		BinarySearchTree<T> tree = new BinarySearchTree<>();
+		tree = _createBST(0, arrSize-1, input, tree);
+		return tree;
+	}
+	
+	private BinarySearchTree<T> _createBST(int low,int high,T[] input,BinarySearchTree<T> bst){				
+		
+		int mid = low+high/2;		
+		bst.insert(input[mid]);
+		if(low<=high){
+			_createBST(low, mid-1, input, bst);
+			_createBST(mid+1, high, input, bst);
+		}			
+		return bst;
+	}
+}

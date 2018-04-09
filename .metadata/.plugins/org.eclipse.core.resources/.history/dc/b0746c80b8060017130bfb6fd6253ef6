@@ -1,0 +1,13 @@
+package ProblemStatements;
+
+public class BinaryTree<T> {
+	private TreeNode<T> root;
+	
+	public BinaryTree(){
+		root=null;
+	}
+	
+	public BinaryTree(TreeNode<T> node){
+		root=new TreeNode<>(node);
+	}
+}

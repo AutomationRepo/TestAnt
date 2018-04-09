@@ -1,0 +1,57 @@
+package ProblemStatements;
+
+public class BinarySearchTree<T extends Comparable<T>> {
+	private TreeNode<T> root;
+	
+	public BinarySearchTree(){
+		root=null;
+	}
+	
+	public BinarySearchTree(T val){
+		root=new TreeNode<>(val);
+	}
+	
+	public BinarySearchTree(TreeNode<T> node){
+		root=new TreeNode<>(node);
+	}
+	
+	public boolean isEmpty(){
+		return(root==null);
+	}
+	
+	public TreeNode<T> insert(T val){
+		if(root==null){
+			root = new TreeNode<>(val);
+			return root;
+		}
+		
+		return _insert(root,val);	
+	}
+	
+	private TreeNode<T> _insert(TreeNode<T> node, T value){
+		if(node==null){
+			node = new TreeNode<>(value);
+			return node;
+		}		
+		
+		if(value.compareTo(node.data) < 0 )
+			return _insert(node.left,value);
+		else
+			return _insert(node.right,value);
+					
+	}
+	
+	public TreeNode<T> search(T val){
+		return _search(root,val);
+	}	
+	
+	private TreeNode<T> _search(TreeNode<T> node, T value){
+		if(node==null || node.data.equals(value))
+			return node;
+		
+		if(value.compareTo(node.data) < 0)
+			return _search(node.left,value);
+		else
+			return _search(node.right,value);		
+	}
+}

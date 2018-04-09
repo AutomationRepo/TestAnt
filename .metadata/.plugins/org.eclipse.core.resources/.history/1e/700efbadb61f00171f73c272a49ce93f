@@ -1,0 +1,8 @@
+'''
+Created on Apr 12, 2017
+
+@author: Shweta
+'''
+from Coding.Strings import revesreString
+
+print(revesreString("Avijit"))

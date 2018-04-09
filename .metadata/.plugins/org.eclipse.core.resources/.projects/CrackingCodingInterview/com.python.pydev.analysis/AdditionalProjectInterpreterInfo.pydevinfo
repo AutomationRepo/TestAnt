@@ -1,0 +1,24 @@
+-- VERSION_4
+-- START DISKCACHE_2
+D:\Study_Material\Sel_Pyth\Workspace\.metadata\.plugins\org.eclipse.core.resources\.projects\CrackingCodingInterview\com.python.pydev.analysis\v2_indexcache
+Coding.Strings|1492737722317186000|D:\Study_Material\Sel_Pyth\Workspace\CrackingCodingInterview\Coding\Strings.py
+Coding.Test|1492737451853390000|D:\Study_Material\Sel_Pyth\Workspace\CrackingCodingInterview\Coding\Test.py
+Coding.__init__|1492024519750448000|D:\Study_Material\Sel_Pyth\Workspace\CrackingCodingInterview\Coding\__init__.py
+-- END DISKCACHE
+-- START DICTIONARY
+2
+1=Coding.Strings
+2=Coding.Test
+-- END DICTIONARY
+-- START TREE 1
+6
+_pe|2|_permute!10@_permuteMerge!10@
+all|2|allPermutation!10@allPermutation_itertool!10@
+fin|1|findAllPermutations!10@
+res|1|res!19@
+rev|6|reverseWordsOrderFromString!10@reverseWordsInString!10@reversePartOfString!10@reverseString_ByReversed!10@reverseString!10@reverseString_TwoPointer!10@
+ver|2|verifyAnagramStrings_sorting!10@verifyAnagramStrings!10@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

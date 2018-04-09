@@ -1,0 +1,111 @@
+package SeleniumTestSuite;
+
+import seleniumTestDriver.ScreenshotTestRule;
+import seleniumTestDriver.Utility;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+//import org.openqa.selenium.internal.seleniumemulation.WaitForPageToLoad;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+//import com.thoughtworks.selenium.*;
+
+import PageObject.Pages.BECloudHome;
+
+public class BECloudTests extends Utility{
+	private static WebDriver driver;
+	private static String baseUrl;
+	//private boolean acceptNextAlert = true;
+	private static StringBuffer verificationErrors = new StringBuffer();
+	private final BECloudHome BECloudHomePageObj = new BECloudHome(driver);
+
+	@Rule
+	public ScreenshotTestRule screenshotTestRule = new ScreenshotTestRule(driver);
+	
+	@BeforeClass
+	public static void PreTest() throws Exception{
+		DesiredCapabilities caps = DesiredCapabilities.firefox(); 
+		caps.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true); 
+		//driver = new FirefoxDriver(caps);
+		System.setProperty("webdriver.chrome.driver","E:\\Avijit\\eclipse-SDK-workspace\\SeleniumFramework\\External\\chromedriver.exe");
+		driver = new ChromeDriver();
+		baseUrl = "https://cloud.qa.spn.com/";
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    driver.get(baseUrl);	    
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+	  /*driver.quit();*/
+	  String verificationErrorString = verificationErrors.toString();
+	  if (!"".equals(verificationErrorString)) {
+	    fail(verificationErrorString);
+	  }
+	}
+	
+	@AfterClass
+	public static void PostTest() throws Exception{
+		driver.manage().deleteAllCookies();
+		driver.quit();
+		//Utility.KillProcess("iexplore.exe");
+		  
+	}
+
+	@Test
+	public void VerifyLogin(){
+		BECloudHomePageObj.EnterLoginCredential("Kapil_Bande@Symantec.com", "Admin12!@");
+		Wait(3000);
+		
+		assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*kapil_bande@symantec\\.com[\\s\\S]*$"));
+		//assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Logout[\\s\\S]*$"));
+		assertTrue(isElementPresent(By.id("ctl00_HyperLink3")));
+		
+		/*
+		try {
+		      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*kapil_bande@symantec\\.com[\\s\\S]*$"));
+		    } catch (Error e) {
+		      verificationErrors.append(e.toString());
+		    }
+		    // Warning: verifyTextPresent may require manual changes
+			verificationErrors.append(driver.findElement(By.id("accountPassword")));
+			
+		    try {
+		      assertTrue(driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*Logout[\\s\\S]*$"));
+		    } catch (Error e) {
+		      verificationErrors.append(e.toString());
+		    }
+		    assertTrue(isElementPresent(By.id("ctl00_HyperLink3")));*/
+	}
+	
+	@Test
+	public void VerifyDragNDrop()
+	{
+		BECloudHomePageObj.EnterLoginCredential("Kapil_Bande@Symantec.com", "Admin12!@");
+		Wait(3000);
+		
+		WebElement src = driver.findElement(By.id("ctl00_cph_lvAllComputers_ctrl3_lvAllComputers_row"));
+		WebElement tgt = driver.findElement(By.id("filter_group_3000000026741"));
+		
+		Actions build = new Actions(driver);
+		
+		build.clickAndHold(src).moveToElement(tgt).release(tgt).build().perform();
+		
+		build.dragAndDrop(src, tgt).build().perform();
+		
+	}
+	
+	private boolean isElementPresent(By by) {
+	    try {
+	      driver.findElement(by);
+	      return true;
+	    } catch (NoSuchElementException e) {
+	      return false;
+	    }
+	    
+	  }
+}

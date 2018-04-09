@@ -1,0 +1,14 @@
+package ProblemStatements;
+
+public class MyStack<T> {
+	private T[] data;
+	
+	public MyStack(){
+		data=null;		
+	}
+
+	public MyStack(int size){
+		data=new T[size];		
+	}
+	
+}
